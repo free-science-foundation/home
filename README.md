@@ -1,17 +1,37 @@
-# Free Software Foundation GitHub Pages
+# Free Software Hub
 
-This is an unofficial GitHub Pages site for the Free Software Foundation (FSF) GitHub organization.
+A modern, beautiful static website showcasing free and open source software projects. This site demonstrates the power of collaborative development and promotes the values of software freedom.
 
 ## About
 
-This site provides quick access to important FSF resources and the official FSF GitHub organization.
+This platform serves as a curated collection of free and open source software projects, making it easy to discover, explore, and contribute to projects that respect user freedom and promote transparency.
+
+## Features
+
+- **Modern Design**: Clean, minimalist interface with responsive design
+- **Project Showcase**: Browse and filter free software projects by category, license, and tags
+- **Accessibility**: Full keyboard navigation and screen reader support
+- **Mobile-First**: Optimized for all devices
+- **Fast Loading**: Static site with no heavy frameworks or tracking
+
+## Site Structure
+
+- **Landing Page**: Introduction to free software values and principles
+- **Projects Page**: Filterable catalog of open source projects
+
+## Technologies Used
+
+- HTML5 semantic markup
+- Modern CSS with custom properties
+- Vanilla JavaScript for interactivity
+- No external dependencies or frameworks
 
 ## Links
 
-- [Official FSF Website](https://www.fsf.org/)
-- [FSF GitHub Organization](https://github.com/free-software-foundation)
-- [Get Involved with FSF](https://www.fsf.org/join)
+- [GNU Project](https://www.gnu.org/)
+- [Open Source Initiative](https://opensource.org/)
+- [GitHub Open Source Topics](https://github.com/topics/open-source)
 
 ## License
 
-This project is not affiliated with or endorsed by the Free Software Foundation. All FSF-related content is the property of the Free Software Foundation.
+This project is open source and available under a permissive license. Feel free to contribute or use as inspiration for your own free software projects.

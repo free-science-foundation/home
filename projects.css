@@ -50,6 +50,10 @@
   align-items: flex-end;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
 }
 
 .search-container {
@@ -119,6 +123,10 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
 }
 
 .results-count {
@@ -156,16 +164,23 @@
 
 /* Projects Grid */
 .projects-grid {
-  padding: 3rem 0;
-  background-color: #ffffff;
-  min-height: 400px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .projects-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1.5rem;
   margin-bottom: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
 }
 
 .project-card {
@@ -174,8 +189,9 @@
   border-radius: 8px;
   padding: 1.5rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .project-card:hover {
@@ -185,6 +201,21 @@
 
 .project-header {
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.project-thumbnail {
+  flex-shrink: 0;
+}
+
+.project-thumbnail img {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #e1e4e8;
 }
 
 .project-name {
@@ -316,59 +347,580 @@
   }
 }
 
-/* Mobile Responsive Design */
-@media (max-width: 768px) {
-  .projects-header {
-    padding: 2rem 0;
-  }
+/* Mobile Responsive Design - Common Smartphones for Projects Page */
 
-  .page-title {
-    font-size: 2rem;
+/* iPhone SE (2020/2022) - 375x667 */
+@media (max-width: 375px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    padding: 0 0.75rem;
   }
-
+  
+  .project-card {
+    max-width: 100%;
+    margin: 0;
+    padding: 1.25rem;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  
+  .project-name {
+    font-size: 1.1rem;
+  }
+  
+  .project-description {
+    font-size: 0.95rem;
+  }
+  
+  .project-tags {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
   .filter-controls {
     flex-direction: column;
-    align-items: stretch;
     gap: 1rem;
   }
-
-  .search-container {
-    min-width: auto;
-  }
-
+  
   .filter-group {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
   }
-
-  .results-info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .projects-container {
-    grid-template-columns: 1fr;
-  }
-
-  .projects-grid {
-    padding: 2rem 0;
+  
+  .filter-select {
+    width: 100%;
   }
 }
 
-@media (max-width: 480px) {
-  .page-title {
-    font-size: 1.75rem;
+/* iPhone 12/13/14 Mini - 390x844 */
+@media (max-width: 390px) {
+  .projects-grid {
+    max-width: 100%;
+    padding: 0 1rem;
   }
+  
+  .project-card {
+    padding: 1.5rem;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .project-thumbnail img {
+    width: 60px;
+    height: 60px;
+  }
+}
 
+/* iPhone 12/13/14 Standard - 390x844 */
+@media (max-width: 430px) {
+  .projects-grid {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .project-card {
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .project-name {
+    font-size: 1.2rem;
+  }
+  
+  .project-description {
+    font-size: 1rem;
+  }
+}
+
+/* iPhone 12/13/14 Pro Max - 428x926 */
+@media (max-width: 428px) {
+  .projects-grid {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .project-card {
+    padding: 1.5rem;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .project-thumbnail {
+    margin: 0 auto;
+  }
+}
+
+/* Samsung Galaxy S21/S22/S23 - 384x854 */
+@media (max-width: 384px) {
+  .projects-grid {
+    padding: 0 0.75rem;
+  }
+  
+  .project-card {
+    padding: 1.25rem;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .filter-controls {
+    flex-direction: column;
+  }
+}
+
+/* Samsung Galaxy S21/S22/S23+ - 480x960 */
+@media (max-width: 480px) {
+  .projects-grid {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .project-card {
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .project-name {
+    font-size: 1.3rem;
+  }
+  
+  .project-description {
+    font-size: 1.05rem;
+  }
+}
+
+/* Samsung Galaxy S21/S22/S23 Ultra - 498x960 */
+@media (max-width: 500px) {
+  .projects-grid {
+    max-width: 100%;
+    padding: 0 1.5rem;
+  }
+  
+  .project-card {
+    padding: 1.75rem;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .project-thumbnail img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* Google Pixel 6/7 - 412x915 */
+@media (max-width: 412px) {
+  .projects-grid {
+    padding: 0 1rem;
+  }
+  
+  .project-card {
+    padding: 1.5rem;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Google Pixel 6/7 Pro - 512x915 */
+@media (max-width: 512px) {
+  .projects-grid {
+    max-width: 100%;
+    padding: 0 1.5rem;
+  }
+  
+  .project-card {
+    padding: 1.75rem;
+  }
+  
+  .project-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .project-name {
+    font-size: 1.4rem;
+  }
+}
+
+/* General Small Phones (Android/iOS) */
+@media (max-width: 360px) {
+  .projects-grid {
+    padding: 0 0.5rem;
+  }
+  
   .project-card {
     padding: 1rem;
   }
-
-  .filter-group {
+  
+  .project-header {
     flex-direction: column;
-    align-items: flex-start;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .project-name {
+    font-size: 1rem;
+  }
+  
+  .project-description {
+    font-size: 0.9rem;
+  }
+  
+  .project-thumbnail img {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .project-tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .filter-controls {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .filter-select {
+    font-size: 0.9rem;
+  }
+  
+  .search-input {
+    font-size: 0.9rem;
+  }
+}
+
+/* Foldable Phones (Unfolded) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+    gap: 2rem;
+  }
+  
+  .project-card {
+    max-width: none;
+  }
+}
+
+/* Tablets (iPad, etc.) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1000px;
+    gap: 2rem;
+  }
+  
+  .project-card {
+    max-width: none;
+    margin: 0;
+  }
+  
+  .project-header {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+/* Wide Screens and High-Resolution Displays for Projects Page */
+
+/* Wide Screens (1920x1080 and above) */
+@media (min-width: 1920px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1600px;
+    gap: 3rem;
+  }
+  
+  .projects-container {
+    max-width: 1800px;
+    margin: 0 auto;
+  }
+  
+  .project-card {
+    max-width: none;
+    margin: 0;
+    padding: 2.5rem;
+  }
+  
+  .project-name {
+    font-size: 1.6rem;
+  }
+  
+  .project-description {
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+  
+  .project-header {
+    gap: 1.5rem;
+  }
+  
+  .project-thumbnail img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .page-title {
+    font-size: 3rem;
+  }
+  
+  .filter-controls {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+  }
+  
+  .search-input {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .filter-select {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* 4K Displays (3840x2160) */
+@media (min-width: 3840px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 2800px;
+    gap: 4rem;
+  }
+  
+  .projects-container {
+    max-width: 3200px;
+  }
+  
+  .project-card {
+    padding: 3.5rem;
+  }
+  
+  .project-name {
+    font-size: 2.2rem;
+  }
+  
+  .project-description {
+    font-size: 1.6rem;
+    line-height: 1.8;
+  }
+  
+  .project-header {
+    gap: 2rem;
+  }
+  
+  .project-thumbnail img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .project-tag {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .page-title {
+    font-size: 4.5rem;
+  }
+  
+  .filter-controls {
+    max-width: 2400px;
+    margin: 0 auto 4rem;
+  }
+  
+  .search-input {
+    font-size: 1.4rem;
+    padding: 1.2rem 2rem;
+  }
+  
+  .filter-select {
+    font-size: 1.4rem;
+    padding: 1.2rem 2rem;
+  }
+  
+  .results-info {
+    font-size: 1.3rem;
+  }
+}
+
+/* 5K Displays (5120x2880) */
+@media (min-width: 5120px) {
+  .projects-grid {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 4000px;
+    gap: 6rem;
+  }
+  
+  .projects-container {
+    max-width: 4400px;
+  }
+  
+  .project-card {
+    padding: 4.5rem;
+  }
+  
+  .project-name {
+    font-size: 2.8rem;
+  }
+  
+  .project-description {
+    font-size: 2rem;
+    line-height: 1.8;
+  }
+  
+  .project-header {
+    gap: 2.5rem;
+  }
+  
+  .project-thumbnail img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .project-tag {
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .page-title {
+    font-size: 6rem;
+  }
+  
+  .filter-controls {
+    max-width: 3600px;
+    margin: 0 auto 5rem;
+  }
+  
+  .search-input {
+    font-size: 1.8rem;
+    padding: 1.5rem 2.5rem;
+  }
+  
+  .filter-select {
+    font-size: 1.8rem;
+    padding: 1.5rem 2.5rem;
+  }
+  
+  .results-info {
+    font-size: 1.6rem;
+  }
+  
+  .project-link {
+    font-size: 1.2rem;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+/* Ultra-Wide Monitors (3440x1440, 2560x1080) */
+@media (min-width: 2560px) and (max-height: 1440px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 2000px;
+    gap: 3rem;
+  }
+  
+  .projects-container {
+    max-width: 2200px;
+  }
+  
+  .project-card {
+    padding: 2rem;
+  }
+  
+  .page-title {
+    font-size: 3.5rem;
+  }
+  
+  .filter-controls {
+    max-width: 1800px;
+  }
+}
+
+/* Super Ultra-Wide (5120x1440) */
+@media (min-width: 4800px) and (max-height: 1600px) {
+  .projects-grid {
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 3600px;
+    gap: 3rem;
+  }
+  
+  .projects-container {
+    max-width: 4000px;
+  }
+  
+  .project-card {
+    padding: 2.5rem;
+  }
+  
+  .page-title {
+    font-size: 4rem;
+  }
+  
+  .filter-controls {
+    max-width: 3200px;
+  }
+}
+
+/* High-DPI Displays (Retina, 4K scaling) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .project-thumbnail img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  .project-card {
+    border-width: 0.5px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .site-header,
+  .filters,
+  .no-results {
+    display: none;
+  }
+  
+  .projects-grid {
+    display: block;
+  }
+  
+  .project-card {
+    break-inside: avoid;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
   }
 }
 

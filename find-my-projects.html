@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find My GitHub Projects</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            background: #0366d6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0256cc;
+        }
+        .project-list {
+            margin-top: 20px;
+        }
+        .project {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #e1e4e8;
+        }
+        .error {
+            color: #d73a49;
+            background: #ffeef0;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Find Your GitHub Projects</h1>
+    
+    <div class="container">
+        <h2>Method 1: GitHub Username</h2>
+        <p>Enter your GitHub username to find all repositories you own or collaborate on:</p>
+        <input type="text" id="username" placeholder="Enter your GitHub username">
+        <button onclick="fetchUserProjects()">Fetch Projects</button>
+    </div>
+
+    <div class="container">
+        <h2>Method 2: Manual GitHub URLs</h2>
+        <p>Paste your repository URLs (one per line):</p>
+        <textarea id="repoUrls" rows="6" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace;" placeholder="https://github.com/username/repo1&#10;https://github.com/username/repo2&#10;https://github.com/orgname/repo3"></textarea>
+        <button onclick="fetchFromUrls()">Fetch from URLs</button>
+    </div>
+
+    <div id="results" class="project-list"></div>
+
+    <script>
+        async function fetchUserProjects() {
+            const username = document.getElementById('username').value.trim();
+            if (!username) {
+                showError('Please enter a GitHub username');
+                return;
+            }
+
+            showLoading();
+            try {
+                // Fetch user's repositories
+                const response = await fetch(`https://api.github.com/user/repos?per_page=100`, {
+                    headers: {
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch repositories. You may need to authenticate.');
+                }
+
+                const repos = await response.json();
+                displayProjects(repos);
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        async function fetchFromUrls() {
+            const urls = document.getElementById('repoUrls').value.trim().split('\n').filter(url => url.trim());
+            if (urls.length === 0) {
+                showError('Please enter at least one repository URL');
+                return;
+            }
+
+            showLoading();
+            const projects = [];
+
+            for (const url of urls) {
+                try {
+                    const match = url.match(/github\.com\/([^\/]+)\/([^\/\?#]+)/);
+                    if (!match) {
+                        console.error(`Invalid GitHub URL: ${url}`);
+                        continue;
+                    }
+
+                    const [, owner, repo] = match;
+                    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+                        headers: {
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        const repoData = await response.json();
+                        projects.push(repoData);
+                    }
+                } catch (error) {
+                    console.error(`Error fetching ${url}:`, error);
+                }
+            }
+
+            if (projects.length > 0) {
+                displayProjects(projects);
+            } else {
+                showError('No valid repositories found');
+            }
+        }
+
+        function displayProjects(repos) {
+            const resultsDiv = document.getElementById('results');
+            const projectsData = repos.map(repo => ({
+                name: repo.name,
+                description: repo.description || 'No description available',
+                url: repo.html_url,
+                language: repo.language || 'Unknown',
+                stars: repo.stargazers_count,
+                forks: repo.forks_count,
+                owner: repo.owner.login,
+                isOwner: repo.owner.type === 'User' && repo.permissions.push,
+                category: categorizeProject(repo.name, repo.description, repo.language)
+            }));
+
+            const output = `
+                <h2>Found ${repos.length} Projects</h2>
+                <button onclick="generateProjectsJSON(${JSON.stringify(projectsData)})">Generate for Website</button>
+                <pre>${JSON.stringify(projectsData, null, 2)}</pre>
+            `;
+
+            resultsDiv.innerHTML = output;
+        }
+
+        function categorizeProject(name, description, language) {
+            const text = (name + ' ' + description).toLowerCase();
+            
+            if (text.includes('scientific') || text.includes('research') || text.includes('data') || 
+                text.includes('analysis') || text.includes('statistics') || text.includes('math') ||
+                text.includes('bio') || text.includes('chem') || text.includes('physics')) {
+                return 'scientific';
+            }
+            if (text.includes('dev') || text.includes('tool') || text.includes('build') || 
+                text.includes('compile') || text.includes('editor') || text.includes('ide')) {
+                return 'development';
+            }
+            if (text.includes('system') || text.includes('admin') || text.includes('monitor') ||
+                text.includes('deploy') || text.includes('server')) {
+                return 'system';
+            }
+            if (text.includes('edu') || text.includes('learn') || text.includes('tutorial') ||
+                text.includes('course')) {
+                return 'education';
+            }
+            if (text.includes('media') || text.includes('video') || text.includes('audio') ||
+                text.includes('image') || text.includes('graphic')) {
+                return 'multimedia';
+            }
+            if (text.includes('doc') || text.includes('wiki') || text.includes('readme')) {
+                return 'documentation';
+            }
+            return 'utilities';
+        }
+
+        function generateProjectsJSON(projects) {
+            const websiteFormat = projects.map((project, index) => ({
+                id: index + 1,
+                name: project.name,
+                description: project.description,
+                category: project.category,
+                tags: generateTags(project.name, project.description, project.language),
+                license: 'mit', // Default, you'll need to update this manually
+                homepage: project.url,
+                repository: project.url,
+                stars: project.stars,
+                language: project.language
+            }));
+
+            const blob = new Blob([JSON.stringify(websiteFormat, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'my-projects.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function generateTags(name, description, language) {
+            const text = (name + ' ' + description).toLowerCase();
+            const tags = [];
+            
+            if (language) tags.push(language.toLowerCase());
+            if (text.includes('open source')) tags.push('open-source');
+            if (text.includes('free')) tags.push('free-software');
+            if (text.includes('research')) tags.push('research');
+            if (text.includes('data')) tags.push('data');
+            if (text.includes('analysis')) tags.push('analysis');
+            
+            return tags.length > 0 ? tags : ['general'];
+        }
+
+        function showLoading() {
+            document.getElementById('results').innerHTML = '<div class="loading">Loading...</div>';
+        }
+
+        function showError(message) {
+            document.getElementById('results').innerHTML = `<div class="error">${message}</div>`;
+        }
+    </script>
+</body>
+</html>

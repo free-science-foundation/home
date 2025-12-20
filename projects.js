@@ -1,187 +1,21 @@
 // Free Software Foundation Projects Page JavaScript
 // Client-side filtering and project display functionality
 
-// Sample project data - in a real implementation, this would come from an API
+// FSF-Affiliated Projects - Only repositories from https://github.com/topics/fsf-affiliated (excluding FSF itself)
 const projectsData = [
   {
     id: 1,
-    name: "GNU Core Utilities",
-    description: "The basic file, shell and text manipulation utilities of the GNU operating system.",
-    category: "system",
-    tags: ["utilities", "system", "command-line"],
-    license: "gplv3",
-    homepage: "https://www.gnu.org/software/coreutils/",
-    repository: "https://github.com/coreutils/coreutils",
-    stars: 8547,
-    language: "C"
-  },
-  {
-    id: 2,
-    name: "GNU Compiler Collection",
-    description: "The GNU Compiler Collection includes front ends for C, C++, Objective-C, Fortran, Ada, Go, and D.",
-    category: "development",
-    tags: ["compiler", "development", "programming"],
-    license: "gplv3",
-    homepage: "https://gcc.gnu.org/",
-    repository: "https://github.com/gcc-mirror/gcc",
-    stars: 12468,
-    language: "C++"
-  },
-  {
-    id: 3,
-    name: "GNU Emacs",
-    description: "An extensible, customizable, free/libre text editor — and more.",
-    category: "development",
-    tags: ["editor", "development", "lisp"],
-    license: "gplv3",
-    homepage: "https://www.gnu.org/software/emacs/",
-    repository: "https://github.com/emacs-mirror/emacs",
-    stars: 5234,
-    language: "C"
-  },
-  {
-    id: 4,
-    name: "GIMP",
-    description: "GNU Image Manipulation Program - a free and open-source raster graphics editor.",
+    name: "Small MP4 Compressor",
+    description: "A lightweight tool for compressing MP4 video files to reduce file size while maintaining quality.",
+    pageDescription: "A Python-based tool for efficiently compressing MP4 video files, perfect for reducing file sizes while maintaining acceptable quality for sharing and storage.",
     category: "multimedia",
-    tags: ["graphics", "image-editing", "multimedia"],
-    license: "gplv3",
-    homepage: "https://www.gimp.org/",
-    repository: "https://gitlab.gnome.org/GNOME/gimp",
-    stars: 8921,
-    language: "C"
-  },
-  {
-    id: 5,
-    name: "Inkscape",
-    description: "Professional vector graphics editor for Linux, Windows, macOS.",
-    category: "multimedia",
-    tags: ["graphics", "vector", "svg"],
-    license: "gplv3",
-    homepage: "https://inkscape.org/",
-    repository: "https://gitlab.com/inkscape/inkscape",
-    stars: 15672,
-    language: "C++"
-  },
-  {
-    id: 6,
-    name: "GNU Bash",
-    description: "The GNU Bourne-Again SHell is the shell or command language interpreter.",
-    category: "system",
-    tags: ["shell", "system", "command-line"],
-    license: "gplv3",
-    homepage: "https://www.gnu.org/software/bash/",
-    repository: "https://git.savannah.gnu.org/cgit/bash.git",
-    stars: 3947,
-    language: "C"
-  },
-  {
-    id: 7,
-    name: "GNU Privacy Guard",
-    description: "Complete and free implementation of the OpenPGP standard as defined by RFC4880.",
-    category: "utilities",
-    tags: ["security", "encryption", "privacy"],
-    license: "gplv3",
-    homepage: "https://gnupg.org/",
-    repository: "https://git.gnupg.org/cgi-bin/gitweb.cgi?p=gnupg.git",
-    stars: 2845,
-    language: "C"
-  },
-  {
-    id: 8,
-    name: "LibreOffice",
-    description: "The LibreOffice office suite - a complete open-source productivity suite.",
-    category: "utilities",
-    tags: ["office", "productivity", "documents"],
-    license: "mplv2",
-    homepage: "https://www.libreoffice.org/",
-    repository: "https://github.com/LibreOffice/core",
-    stars: 8456,
-    language: "C++"
-  },
-  {
-    id: 9,
-    name: "GNU Octave",
-    description: "High-level interpreted language for numerical computations.",
-    category: "education",
-    tags: ["mathematics", "scientific", "education"],
-    license: "gplv3",
-    homepage: "https://www.gnu.org/software/octave/",
-    repository: "https://hg.savannah.gnu.org/hgweb/octave/",
-    stars: 2156,
-    language: "C++"
-  },
-  {
-    id: 10,
-    name: "GNU Health",
-    description: "Free Health and Hospital Information System.",
-    category: "utilities",
-    tags: ["health", "medical", "management"],
-    license: "gplv3",
-    homepage: "https://www.gnuhealth.org/",
-    repository: "https://hg.savannah.gnu.org/hgweb/health/",
-    stars: 523,
-    language: "Python"
-  },
-  {
-    id: 11,
-    name: "GNU Parallel",
-    description: "Shell tool for executing jobs in parallel using one or more computers.",
-    category: "system",
-    tags: ["system", "parallel", "shell"],
-    license: "gplv3",
-    homepage: "https://www.gnu.org/software/parallel/",
-    repository: "https://git.savannah.gnu.org/cgit/parallel.git",
-    stars: 1823,
-    language: "Perl"
-  },
-  {
-    id: 12,
-    name: "GNU Make",
-    description: "Tool which controls the generation of executables and other non-source files.",
-    category: "development",
-    tags: ["build", "development", "tools"],
-    license: "gplv3",
-    homepage: "https://www.gnu.org/software/make/",
-    repository: "https://git.savannah.gnu.org/cgit/make.git",
-    stars: 1432,
-    language: "C"
-  },
-  {
-    id: 13,
-    name: "GNU Nano",
-    description: "Small, friendly text editor inspired by Pico.",
-    category: "development",
-    tags: ["editor", "terminal", "text"],
-    license: "gplv3",
-    homepage: "https://www.nano-editor.org/",
-    repository: "https://git.savannah.gnu.org/cgit/nano.git",
-    stars: 892,
-    language: "C"
-  },
-  {
-    id: 14,
-    name: "GNU wget",
-    description: "GNU Wget is a free utility for non-interactive download of files from the Web.",
-    category: "utilities",
-    tags: ["network", "download", "web"],
-    license: "gplv3",
-    homepage: "https://www.gnu.org/software/wget/",
-    repository: "https://git.savannah.gnu.org/cgit/wget.git",
-    stars: 2678,
-    language: "C"
-  },
-  {
-    id: 15,
-    name: "GNU Guile",
-    description: "GNU extension language and Scheme interpreter.",
-    category: "development",
-    tags: ["scheme", "lisp", "interpreter"],
-    license: "gplv3",
-    homepage: "https://www.gnu.org/software/guile/",
-    repository: "https://git.savannah.gnu.org/cgit/guile.git",
-    stars: 734,
-    language: "C"
+    tags: ["video", "compression", "multimedia", "tools"],
+    license: "mit",
+    homepage: "https://github.com/YodaGitMaster/smallmp4compressor",
+    repository: "https://github.com/YodaGitMaster/smallmp4compressor",
+    stars: 0,
+    language: "Python",
+    thumbnail: "https://via.placeholder.com/50x50/FF0000/ffffff?text=MP4"
   }
 ];
 
@@ -193,11 +27,13 @@ const licenseNames = {
   'lgplv3': 'LGPL v3',
   'apache': 'Apache 2.0',
   'mit': 'MIT',
-  'mplv2': 'MPL v2'
+  'mplv2': 'MPL v2',
+  'bsd': 'BSD'
 };
 
 // Category display names
 const categoryNames = {
+  'scientific': 'Scientific Tools',
   'development': 'Development Tools',
   'utilities': 'Utilities',
   'education': 'Education',
@@ -328,6 +164,9 @@ function createProjectCard(project) {
   return `
     <article class="project-card" tabindex="0" role="article">
       <div class="project-header">
+        <div class="project-thumbnail">
+          <img src="${project.thumbnail}" alt="${project.name} thumbnail" width="50" height="50">
+        </div>
         <h3 class="project-name">
           <a href="${project.homepage}" target="_blank" rel="noopener" aria-label="Visit ${project.name} homepage">
             ${project.name}
@@ -336,7 +175,7 @@ function createProjectCard(project) {
       </div>
       
       <p class="project-description">
-        ${project.description}
+        ${project.pageDescription || project.description}
       </p>
       
       <div class="project-meta">
