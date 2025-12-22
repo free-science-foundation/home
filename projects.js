@@ -15,7 +15,49 @@ const projectsData = [
     repository: "https://github.com/YodaGitMaster/smallmp4compressor",
     stars: 0,
     language: "Python",
-    thumbnail: "https://via.placeholder.com/50x50/FF0000/ffffff?text=MP4"
+    thumbnail: ""
+  },
+  {
+    id: 2,
+    name: "StudyNote",
+    description: "A containerized note-taking application for efficient study management.",
+    pageDescription: "Docker-based note-taking application designed for students and researchers to organize study materials, notes, and resources efficiently.",
+    category: "education",
+    tags: ["notes", "study", "education", "containers"],
+    license: "mit",
+    homepage: "https://hub.docker.com/r/francescocozzolino/studynote",
+    repository: "https://hub.docker.com/r/francescocozzolino/studynote",
+    stars: 0,
+    language: "Dockerfile",
+    thumbnail: ""
+  },
+  {
+    id: 3,
+    name: "Rust Compiler Backend",
+    description: "A containerized Rust compiler backend service for distributed compilation.",
+    pageDescription: "Docker container providing Rust compiler backend services, enabling distributed compilation and build processes for Rust projects.",
+    category: "development",
+    tags: ["rust", "compiler", "backend", "containers"],
+    license: "mit",
+    homepage: "https://hub.docker.com/r/francescocozzolino/rust-compiler-backend",
+    repository: "https://hub.docker.com/r/francescocozzolino/rust-compiler-backend",
+    stars: 0,
+    language: "Rust",
+    thumbnail: ""
+  },
+  {
+    id: 4,
+    name: "Echoes of the Ashes",
+    description: "A containerized gaming or interactive application experience.",
+    pageDescription: "Docker-based interactive application or game container, providing a unique digital experience with echoes-themed content.",
+    category: "multimedia",
+    tags: ["game", "interactive", "multimedia", "containers"],
+    license: "mit",
+    homepage: "https://hub.docker.com/r/francescocozzolino/echoes-of-the-ashes",
+    repository: "https://hub.docker.com/r/francescocozzolino/echoes-of-the-ashes",
+    stars: 0,
+    language: "Unknown",
+    thumbnail: ""
   }
 ];
 
