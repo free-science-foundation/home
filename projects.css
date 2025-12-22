@@ -172,10 +172,9 @@
 }
 
 .projects-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
   margin-bottom: 2rem;
   max-width: 1200px;
   margin-left: auto;
@@ -190,8 +189,6 @@
   padding: 1.5rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 .project-card:hover {
