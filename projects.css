@@ -437,9 +437,9 @@ main {
   }
 }
 
-/* Dark mode */
+/* Dark mode - System preference */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --p-bg: #0b1220;
     --p-surface: rgba(17, 24, 39, 0.72);
     --p-surface-solid: rgba(17, 24, 39, 0.95);
@@ -451,37 +451,110 @@ main {
     --p-ring: rgba(59, 130, 246, 0.35);
   }
 
-  body {
+  :root:not([data-theme="light"]) body {
     background:
       radial-gradient(1200px 700px at 15% -10%, rgba(59, 130, 246, 0.22), transparent 60%),
       radial-gradient(900px 650px at 85% 10%, rgba(168, 85, 247, 0.18), transparent 55%),
       var(--p-bg);
   }
 
-  .projects-header {
+  :root:not([data-theme="light"]) .projects-header {
     background:
       linear-gradient(180deg, rgba(17, 24, 39, 0.92), rgba(17, 24, 39, 0.62)),
       radial-gradient(1000px 400px at 50% 0%, rgba(59, 130, 246, 0.22), transparent 55%);
   }
 
-  .project-card {
+  :root:not([data-theme="light"]) .project-card {
     background: rgba(17, 24, 39, 0.78);
   }
 
-  .project-description {
+  :root:not([data-theme="light"]) .project-description {
     color: rgba(226, 232, 240, 0.78);
   }
 
-  .project-tag {
+  :root:not([data-theme="light"]) .project-tag {
     background: rgba(148, 163, 184, 0.08);
     border-color: rgba(148, 163, 184, 0.16);
     color: rgba(226, 232, 240, 0.82);
   }
 
-  .license-badge {
+  :root:not([data-theme="light"]) .license-badge {
     background: rgba(16, 185, 129, 0.16);
     border-color: rgba(16, 185, 129, 0.22);
   }
+}
+
+/* Dark mode - Manual toggle */
+[data-theme="dark"] {
+  --p-bg: #0b1220;
+  --p-surface: rgba(17, 24, 39, 0.72);
+  --p-surface-solid: rgba(17, 24, 39, 0.95);
+  --p-text: rgba(255, 255, 255, 0.92);
+  --p-muted: rgba(226, 232, 240, 0.7);
+  --p-border: rgba(148, 163, 184, 0.18);
+  --p-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --p-shadow-soft: 0 10px 26px rgba(0, 0, 0, 0.35);
+  --p-ring: rgba(59, 130, 246, 0.35);
+}
+
+[data-theme="dark"] body {
+  background:
+    radial-gradient(1200px 700px at 15% -10%, rgba(59, 130, 246, 0.22), transparent 60%),
+    radial-gradient(900px 650px at 85% 10%, rgba(168, 85, 247, 0.18), transparent 55%),
+    #0b1220;
+}
+
+[data-theme="dark"] .projects-header {
+  background:
+    linear-gradient(180deg, rgba(17, 24, 39, 0.92), rgba(17, 24, 39, 0.62)),
+    radial-gradient(1000px 400px at 50% 0%, rgba(59, 130, 246, 0.22), transparent 55%);
+}
+
+[data-theme="dark"] .project-card {
+  background: rgba(17, 24, 39, 0.78);
+}
+
+[data-theme="dark"] .project-description {
+  color: rgba(226, 232, 240, 0.78);
+}
+
+[data-theme="dark"] .project-tag {
+  background: rgba(148, 163, 184, 0.08);
+  border-color: rgba(148, 163, 184, 0.16);
+  color: rgba(226, 232, 240, 0.82);
+}
+
+[data-theme="dark"] .license-badge {
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.22);
+}
+
+[data-theme="dark"] .page-title {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="dark"] .page-description {
+  color: rgba(226, 232, 240, 0.7);
+}
+
+[data-theme="dark"] .filter-controls {
+  background: rgba(17, 24, 39, 0.72);
+}
+
+[data-theme="dark"] .search-input,
+[data-theme="dark"] .filter-select {
+  background-color: rgba(17, 24, 39, 0.95);
+  color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+[data-theme="dark"] .project-name {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="dark"] .project-link {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.22);
 }
 
 /* Print */
