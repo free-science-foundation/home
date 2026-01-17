@@ -1,35 +1,108 @@
 /* Modern CSS for Free Science Foundation - 2025 Consulting Design */
 
-/* CSS Variables - Modern Design System (matching projects.css) */
+/* ==========================================================================
+   COLOR SCHEME - Extracted from navbar-bg.png
+   Nature & Science inspired palette
+   ========================================================================== */
+
+/* CSS Variables - Natural Science Design System */
 :root {
-  --color-primary: #2563eb;
-  --color-primary-dark: #1e40af;
-  --color-secondary: #7c3aed;
-  --color-accent: #06b6d4;
-  --color-text: #1f2937;
-  --color-text-muted: #5b6573;
-  --color-text-light: #64748b;
+  /* ===== PRIMARY COLORS (Sky Blue Tones) ===== */
+  --color-primary: #3498db;           /* Main sky blue */
+  --color-primary-light: #5dade2;     /* Light sky blue */
+  --color-primary-lighter: #85c1e9;   /* Pale sky blue */
+  --color-primary-dark: #2980b9;      /* Deep sky blue */
+  --color-primary-darker: #1a5276;    /* Dark sky blue */
+  
+  /* ===== SECONDARY COLORS (Nature Greens) ===== */
+  --color-secondary: #27ae60;         /* Grass green */
+  --color-secondary-light: #58d68d;   /* Light grass */
+  --color-secondary-lighter: #abebc6; /* Pale green */
+  --color-secondary-dark: #1e8449;    /* Deep green */
+  --color-secondary-darker: #145a32;  /* Forest green */
+  
+  /* ===== ACCENT COLORS (Teal/Cyan - Molecules) ===== */
+  --color-accent: #17a2b8;            /* Teal */
+  --color-accent-light: #48d1cc;      /* Light teal */
+  --color-accent-lighter: #76d7c4;    /* Aquamarine */
+  --color-accent-dark: #138d75;       /* Deep teal */
+  
+  /* ===== HIGHLIGHT COLORS (Sunlight/Yellow-Green) ===== */
+  --color-highlight: #f1c40f;         /* Sunlight gold */
+  --color-highlight-light: #f9e79f;   /* Pale gold */
+  --color-highlight-green: #c5e1a5;   /* Yellow-green glow */
+  
+  /* ===== NEUTRAL COLORS (City Silhouette/Sky) ===== */
+  --color-neutral-50: #f8fbfc;        /* Lightest */
+  --color-neutral-100: #ecf5f8;       /* Very light */
+  --color-neutral-200: #d4e6ed;       /* Light */
+  --color-neutral-300: #b0c4ce;       /* Medium light */
+  --color-neutral-400: #90a4ae;       /* City silhouette */
+  --color-neutral-500: #78909c;       /* Medium */
+  --color-neutral-600: #607d8b;       /* Medium dark */
+  --color-neutral-700: #455a64;       /* Dark */
+  --color-neutral-800: #37474f;       /* Very dark */
+  --color-neutral-900: #263238;       /* Darkest */
+  
+  /* ===== SEMANTIC COLORS ===== */
+  --color-success: #27ae60;           /* Green */
+  --color-warning: #f39c12;           /* Orange */
+  --color-error: #e74c3c;             /* Red */
+  --color-info: #3498db;              /* Blue */
+  
+  /* ===== TEXT COLORS ===== */
+  --color-text: #263238;              /* Primary text */
+  --color-text-muted: #607d8b;        /* Secondary text */
+  --color-text-light: #90a4ae;        /* Tertiary text */
+  --color-text-inverse: #ffffff;      /* White text */
+  
+  /* ===== SURFACE COLORS ===== */
   --color-surface: #ffffff;
-  --color-surface-elevated: rgba(255, 255, 255, 0.82);
-  --color-border: rgba(15, 23, 42, 0.12);
-  --color-border-light: rgba(15, 23, 42, 0.08);
-  --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --shadow-md: 0 18px 50px rgba(15, 23, 42, 0.12);
-  --shadow-lg: 0 18px 50px rgba(15, 23, 42, 0.12);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --radius-sm: 10px;
+  --color-surface-elevated: rgba(255, 255, 255, 0.92);
+  --color-surface-glass: rgba(255, 255, 255, 0.85);
+  
+  /* ===== BORDER COLORS ===== */
+  --color-border: rgba(38, 50, 56, 0.12);
+  --color-border-light: rgba(38, 50, 56, 0.08);
+  --color-border-focus: rgba(52, 152, 219, 0.5);
+  
+  /* ===== GRADIENT PRESETS ===== */
+  --gradient-sky: linear-gradient(180deg, #85c1e9 0%, #aed6f1 50%, #d4e6ed 100%);
+  --gradient-grass: linear-gradient(180deg, #abebc6 0%, #82e0aa 50%, #58d68d 100%);
+  --gradient-sunrise: linear-gradient(135deg, #f9e79f 0%, #f1c40f 50%, #f39c12 100%);
+  --gradient-nature: linear-gradient(180deg, #85c1e9 0%, #aed6f1 30%, #d4e6ed 50%, #c5e1a5 70%, #abebc6 100%);
+  --gradient-primary: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  --gradient-secondary: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+  --gradient-accent: linear-gradient(135deg, #17a2b8 0%, #48d1cc 100%);
+  
+  /* ===== SHADOWS ===== */
+  --shadow-sm: 0 4px 12px rgba(38, 50, 56, 0.08);
+  --shadow-md: 0 8px 24px rgba(38, 50, 56, 0.12);
+  --shadow-lg: 0 16px 40px rgba(38, 50, 56, 0.14);
+  --shadow-xl: 0 24px 50px rgba(38, 50, 56, 0.18);
+  --shadow-glow-primary: 0 4px 20px rgba(52, 152, 219, 0.25);
+  --shadow-glow-secondary: 0 4px 20px rgba(39, 174, 96, 0.25);
+  --shadow-glow-accent: 0 4px 20px rgba(23, 162, 184, 0.25);
+  
+  /* ===== BORDER RADIUS ===== */
+  --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 14px;
+  --radius-lg: 16px;
   --radius-xl: 24px;
+  --radius-full: 9999px;
+  
+  /* ===== SPACING ===== */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
   --spacing-2xl: 4rem;
-  --transition-fast: 140ms ease;
-  --transition-base: 180ms ease;
-  --transition-slow: 350ms ease;
+  
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
 }
 
 /* CSS Reset and Base Styles */
@@ -54,9 +127,10 @@ body {
   line-height: 1.6;
   color: var(--color-text);
   background: 
-    radial-gradient(1200px 700px at 15% -10%, rgba(37, 99, 235, 0.14), transparent 60%),
-    radial-gradient(900px 650px at 85% 10%, rgba(124, 58, 237, 0.12), transparent 55%),
-    #ffffff;
+    radial-gradient(1200px 700px at 15% -10%, rgba(52, 152, 219, 0.12), transparent 60%),
+    radial-gradient(900px 650px at 85% 10%, rgba(39, 174, 96, 0.10), transparent 55%),
+    radial-gradient(600px 400px at 50% 100%, rgba(197, 225, 165, 0.15), transparent 50%),
+    var(--color-neutral-50);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -71,9 +145,13 @@ body {
 
 /* Header and Navigation - Modern Glassmorphism */
 .site-header {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: 
+    linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.75)),
+    url('images/navbar-bg.png');
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
@@ -90,6 +168,28 @@ body {
   margin: 0 auto;
 }
 
+.nav-brand .brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.nav-brand .site-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: contain;
+  transition: transform var(--transition-base);
+  background: white;
+  padding: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-brand .brand-link:hover .site-logo {
+  transform: scale(1.08);
+}
+
 .nav-brand .site-title {
   font-size: 1.5rem;
   font-weight: 700;
@@ -98,6 +198,17 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .nav-brand .site-logo {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .nav-brand .site-title {
+    font-size: 1.2rem;
+  }
 }
 
 .nav-links {
@@ -167,6 +278,38 @@ body {
   z-index: 1;
 }
 
+/* Hero Banner Image */
+.hero-banner {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-banner-image {
+  max-width: 100%;
+  width: 800px;
+  height: auto;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+.hero-banner-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
+}
+
+@media (max-width: 768px) {
+  .hero-banner-image {
+    width: 100%;
+    border-radius: var(--radius-lg);
+  }
+  
+  .hero-banner {
+    margin-bottom: 1.5rem;
+  }
+}
+
 .hero-title {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 800;
@@ -201,8 +344,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  color: var(--color-text-inverse);
   padding: 1rem 2.5rem;
   border-radius: var(--radius-md);
   text-decoration: none;
@@ -211,7 +354,7 @@ body {
   transition: transform var(--transition-base), box-shadow var(--transition-base);
   border: none;
   cursor: pointer;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-glow-primary);
   position: relative;
   overflow: hidden;
 }
@@ -1325,14 +1468,14 @@ body {
 }
 
 .theme-switch input:checked + .theme-slider {
-  background: linear-gradient(135deg, #3b82f6, #6366f1);
-  border-color: rgba(59, 130, 246, 0.3);
+  background: linear-gradient(135deg, #3498db, #17a2b8);
+  border-color: rgba(52, 152, 219, 0.3);
 }
 
 .theme-switch input:checked + .theme-slider::before {
   transform: translateX(24px);
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(59, 130, 246, 0.3);
+  background: linear-gradient(135deg, #1a252f, #263238);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(52, 152, 219, 0.3);
 }
 
 .theme-switch input:focus + .theme-slider {
@@ -1365,12 +1508,16 @@ body {
 }
 
 [data-theme="light"] .site-header {
-  background: rgba(255, 255, 255, 0.82);
+  background: 
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.78)),
+    url('images/navbar-bg.png');
+  background-size: cover;
+  background-position: center;
   border-bottom-color: rgba(15, 23, 42, 0.12);
 }
 
 [data-theme="light"] .nav-brand .site-title {
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  background: linear-gradient(135deg, #3498db, #27ae60);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -1396,7 +1543,7 @@ body {
 }
 
 [data-theme="light"] .hero-title {
-  background: linear-gradient(135deg, #1f2937 0%, #2563eb 50%, #7c3aed 100%);
+  background: linear-gradient(135deg, #263238 0%, #3498db 50%, #27ae60 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -1447,21 +1594,22 @@ body {
 
 [data-theme="light"] .action-link:hover {
   background: rgba(255, 255, 255, 0.95);
-  border-color: #2563eb;
-  color: #2563eb;
+  border-color: #3498db;
+  color: #3498db;
 }
 
 [data-theme="light"] .cta-button {
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  background: linear-gradient(135deg, #3498db 0%, #17a2b8 100%);
+  box-shadow: 0 4px 20px rgba(52, 152, 219, 0.3);
 }
 
 [data-theme="light"] .submission-cta {
-  background: rgba(255, 255, 255, 0.82);
-  border-color: rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: var(--color-border);
 }
 
 [data-theme="light"] .cta-text {
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 [data-theme="light"] .team-grid-section {
@@ -1469,13 +1617,13 @@ body {
 }
 
 [data-theme="light"] .team-member-photo {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(124, 58, 237, 0.12));
-  border-color: rgba(15, 23, 42, 0.12);
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.12), rgba(39, 174, 96, 0.10));
+  border-color: var(--color-border);
 }
 
 [data-theme="light"] .photo-placeholder {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.06));
-  border-color: #2563eb;
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.08), rgba(39, 174, 96, 0.06));
+  border-color: #3498db;
 }
 
 [data-theme="light"] .team-member-name {
@@ -1500,30 +1648,48 @@ body {
 }
 
 [data-theme="light"] .site-footer {
-  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-  border-top-color: rgba(15, 23, 42, 0.08);
+  background: linear-gradient(180deg, #f8fbfc 0%, #ecf5f8 100%);
+  border-top-color: rgba(38, 50, 56, 0.1);
+  color: #263238;
 }
 
-[data-theme="light"] .site-footer,
+[data-theme="light"] .site-footer h3,
+[data-theme="light"] .site-footer h4,
+[data-theme="light"] .footer-section h3,
 [data-theme="light"] .footer-section h4,
-[data-theme="light"] .footer-bottom {
-  color: #1f2937;
+[data-theme="light"] .footer-heading {
+  color: #1a252f;
+  font-weight: 700;
+}
+
+[data-theme="light"] .site-footer p,
+[data-theme="light"] .footer-section p,
+[data-theme="light"] .footer-bottom,
+[data-theme="light"] .footer-bottom p {
+  color: #455a64;
 }
 
 [data-theme="light"] .footer-link,
-[data-theme="light"] .footer-section p {
-  color: #5b6573;
+[data-theme="light"] .footer-links a,
+[data-theme="light"] .site-footer a {
+  color: #607d8b;
+}
+
+[data-theme="light"] .footer-link:hover,
+[data-theme="light"] .footer-links a:hover,
+[data-theme="light"] .site-footer a:hover {
+  color: #3498db;
 }
 
 /* Dark Mode Styles */
 [data-theme="dark"] {
   --color-text: rgba(255, 255, 255, 0.92);
-  --color-text-muted: rgba(226, 232, 240, 0.7);
-  --color-text-light: rgba(226, 232, 240, 0.6);
-  --color-surface: #0b1220;
-  --color-surface-elevated: rgba(17, 24, 39, 0.72);
-  --color-border: rgba(148, 163, 184, 0.18);
-  --color-border-light: rgba(148, 163, 184, 0.12);
+  --color-text-muted: rgba(176, 196, 206, 0.8);
+  --color-text-light: rgba(176, 196, 206, 0.6);
+  --color-surface: #1a252f;
+  --color-surface-elevated: rgba(38, 50, 56, 0.72);
+  --color-border: rgba(144, 164, 174, 0.18);
+  --color-border-light: rgba(144, 164, 174, 0.12);
   --shadow-sm: 0 10px 26px rgba(0, 0, 0, 0.35);
   --shadow-md: 0 18px 50px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 18px 50px rgba(0, 0, 0, 0.45);
@@ -1531,18 +1697,27 @@ body {
 
 [data-theme="dark"] body {
   background: 
-    radial-gradient(1200px 700px at 15% -10%, rgba(59, 130, 246, 0.22), transparent 60%),
-    radial-gradient(900px 650px at 85% 10%, rgba(168, 85, 247, 0.18), transparent 55%),
-    #0b1220;
+    radial-gradient(1200px 700px at 15% -10%, rgba(93, 173, 226, 0.18), transparent 60%),
+    radial-gradient(900px 650px at 85% 10%, rgba(88, 214, 141, 0.14), transparent 55%),
+    radial-gradient(600px 400px at 50% 100%, rgba(118, 215, 196, 0.10), transparent 50%),
+    #1a252f;
 }
 
 [data-theme="dark"] .site-header {
-  background: rgba(17, 24, 39, 0.82);
-  border-bottom-color: rgba(148, 163, 184, 0.18);
+  background: 
+    linear-gradient(180deg, rgba(26, 37, 47, 0.90), rgba(26, 37, 47, 0.80)),
+    url('images/navbar-bg.png');
+  background-size: cover;
+  background-position: center;
+  border-bottom-color: rgba(144, 164, 174, 0.18);
+}
+
+[data-theme="dark"] .nav-brand .site-logo {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="dark"] .nav-brand .site-title {
-  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  background: linear-gradient(135deg, #85c1e9, #76d7c4);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -1557,18 +1732,26 @@ body {
 }
 
 [data-theme="dark"] .theme-slider {
-  background: linear-gradient(135deg, #3b82f6, #6366f1);
-  border-color: rgba(59, 130, 246, 0.3);
+  background: linear-gradient(135deg, #5dade2, #48d1cc);
+  border-color: rgba(93, 173, 226, 0.3);
 }
 
 [data-theme="dark"] .theme-slider::before {
   transform: translateX(24px);
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(59, 130, 246, 0.3);
+  background: linear-gradient(135deg, #1a252f, #263238);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(93, 173, 226, 0.3);
+}
+
+[data-theme="dark"] .hero-banner-image {
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .hero-banner-image:hover {
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="dark"] .hero-title {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, #60a5fa 50%, #a78bfa 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, #85c1e9 50%, #76d7c4 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -1591,8 +1774,8 @@ body {
 }
 
 [data-theme="dark"] .step {
-  background: rgba(17, 24, 39, 0.78);
-  border-color: rgba(148, 163, 184, 0.18);
+  background: rgba(38, 50, 56, 0.78);
+  border-color: rgba(144, 164, 174, 0.18);
 }
 
 [data-theme="dark"] .step-title {
@@ -1612,24 +1795,25 @@ body {
 }
 
 [data-theme="dark"] .action-link {
-  background: rgba(17, 24, 39, 0.72);
+  background: rgba(38, 50, 56, 0.72);
   color: rgba(255, 255, 255, 0.92);
-  border-color: rgba(148, 163, 184, 0.18);
+  border-color: rgba(144, 164, 174, 0.18);
 }
 
 [data-theme="dark"] .action-link:hover {
-  background: rgba(17, 24, 39, 0.85);
-  border-color: #60a5fa;
-  color: #60a5fa;
+  background: rgba(38, 50, 56, 0.85);
+  border-color: #85c1e9;
+  color: #85c1e9;
 }
 
 [data-theme="dark"] .cta-button {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  background: linear-gradient(135deg, #5dade2 0%, #48d1cc 100%);
+  box-shadow: 0 4px 20px rgba(93, 173, 226, 0.3);
 }
 
 [data-theme="dark"] .submission-cta {
-  background: rgba(17, 24, 39, 0.78);
-  border-color: rgba(148, 163, 184, 0.18);
+  background: rgba(38, 50, 56, 0.78);
+  border-color: rgba(144, 164, 174, 0.18);
 }
 
 [data-theme="dark"] .cta-text {
@@ -1641,13 +1825,13 @@ body {
 }
 
 [data-theme="dark"] .team-member-photo {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(168, 85, 247, 0.18));
-  border-color: rgba(148, 163, 184, 0.18);
+  background: linear-gradient(135deg, rgba(93, 173, 226, 0.22), rgba(88, 214, 141, 0.18));
+  border-color: rgba(144, 164, 174, 0.18);
 }
 
 [data-theme="dark"] .photo-placeholder {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(168, 85, 247, 0.12));
-  border-color: #60a5fa;
+  background: linear-gradient(135deg, rgba(93, 173, 226, 0.16), rgba(88, 214, 141, 0.12));
+  border-color: #85c1e9;
 }
 
 [data-theme="dark"] .team-member-name {
@@ -1663,8 +1847,8 @@ body {
 }
 
 [data-theme="dark"] .code-block {
-  background-color: rgba(17, 24, 39, 0.72);
-  border-color: rgba(148, 163, 184, 0.18);
+  background-color: rgba(38, 50, 56, 0.72);
+  border-color: rgba(144, 164, 174, 0.18);
 }
 
 [data-theme="dark"] .code-block pre {
@@ -1672,8 +1856,8 @@ body {
 }
 
 [data-theme="dark"] .site-footer {
-  background: linear-gradient(180deg, #0a0f1a 0%, #111827 100%);
-  border-top-color: rgba(148, 163, 184, 0.12);
+  background: linear-gradient(180deg, #1a252f 0%, #263238 100%);
+  border-top-color: rgba(144, 164, 174, 0.12);
 }
 
 /* Responsive theme toggle */

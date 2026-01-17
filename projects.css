@@ -1,18 +1,20 @@
 /* Projects Page Styles (refreshed, simplified, modern) */
+/* Color scheme extracted from navbar-bg.png - Nature & Science palette */
 
 :root {
-  --p-bg: #ffffff;
-  --p-surface: rgba(255, 255, 255, 0.82);
+  --p-bg: #f8fbfc;
+  --p-surface: rgba(255, 255, 255, 0.92);
   --p-surface-solid: #ffffff;
-  --p-text: #1f2937;
-  --p-muted: #5b6573;
-  --p-border: rgba(15, 23, 42, 0.12);
-  --p-shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
-  --p-shadow-soft: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --p-accent: #2563eb;
-  --p-accent-2: #7c3aed;
-  --p-ring: rgba(37, 99, 235, 0.28);
-  --p-radius: 14px;
+  --p-text: #263238;
+  --p-muted: #607d8b;
+  --p-border: rgba(38, 50, 56, 0.12);
+  --p-shadow: 0 16px 40px rgba(38, 50, 56, 0.14);
+  --p-shadow-soft: 0 8px 24px rgba(38, 50, 56, 0.08);
+  --p-accent: #3498db;
+  --p-accent-2: #27ae60;
+  --p-accent-3: #17a2b8;
+  --p-ring: rgba(52, 152, 219, 0.28);
+  --p-radius: 16px;
   --p-radius-sm: 10px;
   --p-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -32,8 +34,9 @@
 
 body {
   background:
-    radial-gradient(1200px 700px at 15% -10%, rgba(37, 99, 235, 0.14), transparent 60%),
-    radial-gradient(900px 650px at 85% 10%, rgba(124, 58, 237, 0.12), transparent 55%),
+    radial-gradient(1200px 700px at 15% -10%, rgba(52, 152, 219, 0.12), transparent 60%),
+    radial-gradient(900px 650px at 85% 10%, rgba(39, 174, 96, 0.10), transparent 55%),
+    radial-gradient(600px 400px at 50% 100%, rgba(197, 225, 165, 0.12), transparent 50%),
     var(--p-bg);
 }
 
@@ -77,6 +80,28 @@ main {
   max-width: 72ch;
   margin: 0 auto;
   line-height: 1.7;
+}
+
+/* Donate Project Button */
+.donate-project-btn {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--p-accent) 0%, var(--p-accent-2) 100%);
+  color: #ffffff;
+  padding: 0.85rem 1.75rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform 250ms ease, box-shadow 250ms ease;
+  box-shadow: 0 4px 20px rgba(52, 152, 219, 0.25);
+}
+
+.donate-project-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(52, 152, 219, 0.35);
 }
 
 /* Filters Section */
@@ -440,32 +465,33 @@ main {
 /* Dark mode - System preference */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --p-bg: #0b1220;
-    --p-surface: rgba(17, 24, 39, 0.72);
-    --p-surface-solid: rgba(17, 24, 39, 0.95);
+    --p-bg: #1a252f;
+    --p-surface: rgba(38, 50, 56, 0.72);
+    --p-surface-solid: rgba(38, 50, 56, 0.95);
     --p-text: rgba(255, 255, 255, 0.92);
-    --p-muted: rgba(226, 232, 240, 0.7);
-    --p-border: rgba(148, 163, 184, 0.18);
+    --p-muted: rgba(176, 196, 206, 0.7);
+    --p-border: rgba(144, 164, 174, 0.18);
     --p-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
     --p-shadow-soft: 0 10px 26px rgba(0, 0, 0, 0.35);
-    --p-ring: rgba(59, 130, 246, 0.35);
+    --p-ring: rgba(93, 173, 226, 0.35);
   }
 
   :root:not([data-theme="light"]) body {
     background:
-      radial-gradient(1200px 700px at 15% -10%, rgba(59, 130, 246, 0.22), transparent 60%),
-      radial-gradient(900px 650px at 85% 10%, rgba(168, 85, 247, 0.18), transparent 55%),
+      radial-gradient(1200px 700px at 15% -10%, rgba(93, 173, 226, 0.18), transparent 60%),
+      radial-gradient(900px 650px at 85% 10%, rgba(88, 214, 141, 0.14), transparent 55%),
+      radial-gradient(600px 400px at 50% 100%, rgba(118, 215, 196, 0.10), transparent 50%),
       var(--p-bg);
   }
 
   :root:not([data-theme="light"]) .projects-header {
     background:
-      linear-gradient(180deg, rgba(17, 24, 39, 0.92), rgba(17, 24, 39, 0.62)),
-      radial-gradient(1000px 400px at 50% 0%, rgba(59, 130, 246, 0.22), transparent 55%);
+      linear-gradient(180deg, rgba(38, 50, 56, 0.92), rgba(38, 50, 56, 0.62)),
+      radial-gradient(1000px 400px at 50% 0%, rgba(93, 173, 226, 0.18), transparent 55%);
   }
 
   :root:not([data-theme="light"]) .project-card {
-    background: rgba(17, 24, 39, 0.78);
+    background: rgba(38, 50, 56, 0.78);
   }
 
   :root:not([data-theme="light"]) .project-description {
@@ -473,45 +499,46 @@ main {
   }
 
   :root:not([data-theme="light"]) .project-tag {
-    background: rgba(148, 163, 184, 0.08);
-    border-color: rgba(148, 163, 184, 0.16);
-    color: rgba(226, 232, 240, 0.82);
+    background: rgba(93, 173, 226, 0.12);
+    border-color: rgba(93, 173, 226, 0.22);
+    color: #85c1e9;
   }
 
   :root:not([data-theme="light"]) .license-badge {
-    background: rgba(16, 185, 129, 0.16);
-    border-color: rgba(16, 185, 129, 0.22);
+    background: rgba(88, 214, 141, 0.16);
+    border-color: rgba(88, 214, 141, 0.22);
   }
 }
 
 /* Dark mode - Manual toggle */
 [data-theme="dark"] {
-  --p-bg: #0b1220;
-  --p-surface: rgba(17, 24, 39, 0.72);
-  --p-surface-solid: rgba(17, 24, 39, 0.95);
+  --p-bg: #1a252f;
+  --p-surface: rgba(38, 50, 56, 0.72);
+  --p-surface-solid: rgba(38, 50, 56, 0.95);
   --p-text: rgba(255, 255, 255, 0.92);
-  --p-muted: rgba(226, 232, 240, 0.7);
-  --p-border: rgba(148, 163, 184, 0.18);
+  --p-muted: rgba(176, 196, 206, 0.7);
+  --p-border: rgba(144, 164, 174, 0.18);
   --p-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
   --p-shadow-soft: 0 10px 26px rgba(0, 0, 0, 0.35);
-  --p-ring: rgba(59, 130, 246, 0.35);
+  --p-ring: rgba(93, 173, 226, 0.35);
 }
 
 [data-theme="dark"] body {
   background:
-    radial-gradient(1200px 700px at 15% -10%, rgba(59, 130, 246, 0.22), transparent 60%),
-    radial-gradient(900px 650px at 85% 10%, rgba(168, 85, 247, 0.18), transparent 55%),
-    #0b1220;
+    radial-gradient(1200px 700px at 15% -10%, rgba(93, 173, 226, 0.18), transparent 60%),
+    radial-gradient(900px 650px at 85% 10%, rgba(88, 214, 141, 0.14), transparent 55%),
+    radial-gradient(600px 400px at 50% 100%, rgba(118, 215, 196, 0.10), transparent 50%),
+    #1a252f;
 }
 
 [data-theme="dark"] .projects-header {
   background:
-    linear-gradient(180deg, rgba(17, 24, 39, 0.92), rgba(17, 24, 39, 0.62)),
-    radial-gradient(1000px 400px at 50% 0%, rgba(59, 130, 246, 0.22), transparent 55%);
+    linear-gradient(180deg, rgba(38, 50, 56, 0.92), rgba(38, 50, 56, 0.62)),
+    radial-gradient(1000px 400px at 50% 0%, rgba(93, 173, 226, 0.18), transparent 55%);
 }
 
 [data-theme="dark"] .project-card {
-  background: rgba(17, 24, 39, 0.78);
+  background: rgba(38, 50, 56, 0.78);
 }
 
 [data-theme="dark"] .project-description {
@@ -519,9 +546,9 @@ main {
 }
 
 [data-theme="dark"] .project-tag {
-  background: rgba(148, 163, 184, 0.08);
-  border-color: rgba(148, 163, 184, 0.16);
-  color: rgba(226, 232, 240, 0.82);
+  background: rgba(93, 173, 226, 0.12);
+  border-color: rgba(93, 173, 226, 0.22);
+  color: #85c1e9;
 }
 
 [data-theme="dark"] .license-badge {
@@ -537,15 +564,24 @@ main {
   color: rgba(226, 232, 240, 0.7);
 }
 
+[data-theme="dark"] .donate-project-btn {
+  background: linear-gradient(135deg, #5dade2 0%, #58d68d 100%);
+  box-shadow: 0 4px 20px rgba(93, 173, 226, 0.3);
+}
+
+[data-theme="dark"] .donate-project-btn:hover {
+  box-shadow: 0 6px 25px rgba(93, 173, 226, 0.4);
+}
+
 [data-theme="dark"] .filter-controls {
-  background: rgba(17, 24, 39, 0.72);
+  background: rgba(38, 50, 56, 0.72);
 }
 
 [data-theme="dark"] .search-input,
 [data-theme="dark"] .filter-select {
-  background-color: rgba(17, 24, 39, 0.95);
+  background-color: rgba(38, 50, 56, 0.95);
   color: rgba(255, 255, 255, 0.92);
-  border-color: rgba(148, 163, 184, 0.18);
+  border-color: rgba(144, 164, 174, 0.18);
 }
 
 [data-theme="dark"] .project-name {
@@ -553,28 +589,35 @@ main {
 }
 
 [data-theme="dark"] .project-link {
-  background: rgba(59, 130, 246, 0.12);
-  border-color: rgba(59, 130, 246, 0.22);
+  background: rgba(93, 173, 226, 0.12);
+  border-color: rgba(93, 173, 226, 0.22);
+  color: #85c1e9;
+}
+
+[data-theme="dark"] .project-link:hover {
+  background: rgba(93, 173, 226, 0.22);
+  border-color: rgba(93, 173, 226, 0.35);
 }
 
 /* Light mode - Manual toggle (for when user's system is dark but they want light) */
 [data-theme="light"] {
-  --p-bg: #ffffff;
-  --p-surface: rgba(255, 255, 255, 0.92);
+  --p-bg: #f8fbfc;
+  --p-surface: rgba(255, 255, 255, 0.95);
   --p-surface-solid: #ffffff;
-  --p-text: #1f2937;
-  --p-muted: #4b5563;
-  --p-border: rgba(15, 23, 42, 0.15);
-  --p-shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
-  --p-shadow-soft: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --p-ring: rgba(37, 99, 235, 0.28);
+  --p-text: #263238;
+  --p-muted: #607d8b;
+  --p-border: rgba(38, 50, 56, 0.12);
+  --p-shadow: 0 16px 40px rgba(38, 50, 56, 0.12);
+  --p-shadow-soft: 0 8px 24px rgba(38, 50, 56, 0.08);
+  --p-ring: rgba(52, 152, 219, 0.28);
 }
 
 [data-theme="light"] body {
   background:
-    radial-gradient(1200px 700px at 15% -10%, rgba(37, 99, 235, 0.12), transparent 60%),
-    radial-gradient(900px 650px at 85% 10%, rgba(124, 58, 237, 0.10), transparent 55%),
-    #f8fafc;
+    radial-gradient(1200px 700px at 15% -10%, rgba(52, 152, 219, 0.12), transparent 60%),
+    radial-gradient(900px 650px at 85% 10%, rgba(39, 174, 96, 0.10), transparent 55%),
+    radial-gradient(600px 400px at 50% 100%, rgba(197, 225, 165, 0.12), transparent 50%),
+    #f8fbfc;
 }
 
 [data-theme="light"] .projects-header {
@@ -585,8 +628,8 @@ main {
 }
 
 [data-theme="light"] .page-title {
-  color: #0f172a;
-  background: linear-gradient(135deg, #1e293b 0%, #2563eb 50%, #7c3aed 100%);
+  color: #263238;
+  background: linear-gradient(135deg, #263238 0%, #3498db 50%, #27ae60 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -594,6 +637,15 @@ main {
 
 [data-theme="light"] .page-description {
   color: #475569;
+}
+
+[data-theme="light"] .donate-project-btn {
+  background: linear-gradient(135deg, #3498db 0%, #27ae60 100%);
+  box-shadow: 0 4px 20px rgba(52, 152, 219, 0.25);
+}
+
+[data-theme="light"] .donate-project-btn:hover {
+  box-shadow: 0 6px 25px rgba(52, 152, 219, 0.35);
 }
 
 [data-theme="light"] .filter-controls {
@@ -641,9 +693,9 @@ main {
 }
 
 [data-theme="light"] .project-tag {
-  background: rgba(37, 99, 235, 0.06);
-  border-color: rgba(37, 99, 235, 0.15);
-  color: #3b82f6;
+  background: rgba(52, 152, 219, 0.08);
+  border-color: rgba(52, 152, 219, 0.18);
+  color: #3498db;
 }
 
 [data-theme="light"] .license-badge {
@@ -653,14 +705,14 @@ main {
 }
 
 [data-theme="light"] .project-link {
-  background: rgba(37, 99, 235, 0.08);
-  border-color: rgba(37, 99, 235, 0.2);
-  color: #2563eb;
+  background: rgba(52, 152, 219, 0.08);
+  border-color: rgba(52, 152, 219, 0.2);
+  color: #3498db;
 }
 
 [data-theme="light"] .project-link:hover {
-  background: rgba(37, 99, 235, 0.15);
-  border-color: rgba(37, 99, 235, 0.35);
+  background: rgba(52, 152, 219, 0.15);
+  border-color: rgba(52, 152, 219, 0.35);
 }
 
 /* Print */
