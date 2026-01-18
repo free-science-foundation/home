@@ -2041,3 +2041,313 @@ body {
     margin-top: 1rem;
   }
 }
+
+/* ==========================================================================
+   LEGAL DISCLAIMER MODAL
+   ========================================================================== */
+
+.disclaimer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.disclaimer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.disclaimer-modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  max-width: 700px;
+  width: 100%;
+  max-height: 85vh;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.disclaimer-overlay.active .disclaimer-modal {
+  transform: translateY(0) scale(1);
+}
+
+.disclaimer-header {
+  padding: 1.75rem 2rem;
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-secondary-dark) 100%);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.disclaimer-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.06)"/></svg>');
+  opacity: 0.5;
+}
+
+.disclaimer-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.02em;
+}
+
+.disclaimer-content {
+  padding: 1.5rem 2rem;
+  overflow-y: auto;
+  flex: 1;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.disclaimer-content h3 {
+  color: var(--color-primary-dark);
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.disclaimer-content h3::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--color-secondary);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.disclaimer-content h3:first-child {
+  margin-top: 0;
+}
+
+.disclaimer-content p {
+  margin: 0 0 1rem;
+  color: var(--color-text-muted);
+}
+
+.disclaimer-content ul {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+}
+
+.disclaimer-content li {
+  margin-bottom: 0.5rem;
+  color: var(--color-text-muted);
+}
+
+.disclaimer-content strong {
+  color: var(--color-text);
+}
+
+.disclaimer-footer {
+  padding: 1.25rem 2rem;
+  background: linear-gradient(180deg, var(--color-neutral-50) 0%, var(--color-neutral-100) 100%);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.disclaimer-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-fast);
+}
+
+.disclaimer-checkbox:hover {
+  border-color: var(--color-secondary);
+  background: rgba(39, 174, 96, 0.03);
+}
+
+.disclaimer-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--color-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.disclaimer-checkbox label {
+  font-size: 0.875rem;
+  color: var(--color-text);
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.5;
+}
+
+.disclaimer-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.disclaimer-btn {
+  padding: 0.875rem 2rem;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+}
+
+.disclaimer-btn-accept {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+  color: white;
+  box-shadow: var(--shadow-glow-secondary);
+}
+
+.disclaimer-btn-accept:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+}
+
+.disclaimer-btn-accept:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.disclaimer-btn-decline {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 2px solid var(--color-border);
+}
+
+.disclaimer-btn-decline:hover {
+  background: var(--color-neutral-200);
+  color: var(--color-text);
+}
+
+/* Dark mode disclaimer styles */
+[data-theme="dark"] .disclaimer-modal {
+  background: #1a252f;
+  border: 1px solid rgba(144, 164, 174, 0.18);
+}
+
+[data-theme="dark"] .disclaimer-header {
+  background: linear-gradient(135deg, #1a5276 0%, #145a32 100%);
+}
+
+[data-theme="dark"] .disclaimer-content h3 {
+  color: #85c1e9;
+  border-bottom-color: rgba(144, 164, 174, 0.18);
+}
+
+[data-theme="dark"] .disclaimer-content h3::before {
+  background: #58d68d;
+}
+
+[data-theme="dark"] .disclaimer-content p,
+[data-theme="dark"] .disclaimer-content li {
+  color: rgba(226, 232, 240, 0.75);
+}
+
+[data-theme="dark"] .disclaimer-content strong {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="dark"] .disclaimer-footer {
+  background: linear-gradient(180deg, rgba(38, 50, 56, 0.5) 0%, rgba(26, 37, 47, 0.8) 100%);
+  border-top-color: rgba(144, 164, 174, 0.18);
+}
+
+[data-theme="dark"] .disclaimer-checkbox {
+  background: rgba(38, 50, 56, 0.5);
+  border-color: rgba(144, 164, 174, 0.2);
+}
+
+[data-theme="dark"] .disclaimer-checkbox:hover {
+  border-color: #58d68d;
+  background: rgba(88, 214, 141, 0.05);
+}
+
+[data-theme="dark"] .disclaimer-checkbox label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] .disclaimer-btn-decline {
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(144, 164, 174, 0.3);
+}
+
+[data-theme="dark"] .disclaimer-btn-decline:hover {
+  background: rgba(144, 164, 174, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive modal */
+@media (max-width: 600px) {
+  .disclaimer-modal {
+    max-height: 90vh;
+  }
+  
+  .disclaimer-header {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .disclaimer-header h2 {
+    font-size: 1.25rem;
+  }
+  
+  .disclaimer-content {
+    padding: 1.25rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .disclaimer-content h3 {
+    font-size: 1rem;
+  }
+  
+  .disclaimer-footer {
+    padding: 1rem 1.5rem;
+  }
+  
+  .disclaimer-actions {
+    flex-direction: column;
+  }
+  
+  .disclaimer-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

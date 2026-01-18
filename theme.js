@@ -198,3 +198,94 @@
     }
   });
 })();
+
+// Legal Disclaimer Modal Functionality
+(function() {
+  const disclaimerOverlay = document.getElementById('disclaimer-overlay');
+  const disclaimerAgree = document.getElementById('disclaimer-agree');
+  const disclaimerAccept = document.getElementById('disclaimer-accept');
+  
+  if (!disclaimerOverlay) return;
+  
+  const DISCLAIMER_KEY = 'fsf_disclaimer_accepted';
+  const DISCLAIMER_VERSION = '1.0'; // Increment this to force re-acceptance
+  
+  // Check if disclaimer was already accepted
+  function isDisclaimerAccepted() {
+    const accepted = localStorage.getItem(DISCLAIMER_KEY);
+    return accepted === DISCLAIMER_VERSION;
+  }
+  
+  // Show disclaimer modal
+  function showDisclaimer() {
+    disclaimerOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+    
+    // Focus on the modal for accessibility
+    setTimeout(() => {
+      if (disclaimerAgree) {
+        disclaimerAgree.focus();
+      }
+    }, 100);
+  }
+  
+  // Hide disclaimer modal
+  function hideDisclaimer() {
+    disclaimerOverlay.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+  }
+  
+  // Accept disclaimer
+  function acceptDisclaimer() {
+    localStorage.setItem(DISCLAIMER_KEY, DISCLAIMER_VERSION);
+    hideDisclaimer();
+  }
+  
+  // Enable/disable accept button based on checkbox
+  if (disclaimerAgree && disclaimerAccept) {
+    disclaimerAgree.addEventListener('change', function() {
+      disclaimerAccept.disabled = !this.checked;
+    });
+    
+    disclaimerAccept.addEventListener('click', function() {
+      if (!disclaimerAgree.checked) return;
+      acceptDisclaimer();
+    });
+  }
+  
+  // Prevent closing by clicking overlay (must explicitly accept or decline)
+  disclaimerOverlay.addEventListener('click', function(e) {
+    // Only allow closing if clicking directly on overlay, not modal content
+    // But we don't want users to close without accepting, so do nothing
+  });
+  
+  // Trap focus within modal
+  disclaimerOverlay.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab') {
+      const focusableElements = disclaimerOverlay.querySelectorAll(
+        'input, button, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+    
+    // Prevent Escape from closing (must explicitly accept or decline)
+    if (e.key === 'Escape') {
+      e.preventDefault();
+    }
+  });
+  
+  // Show disclaimer on page load if not accepted
+  if (!isDisclaimerAccepted()) {
+    // Small delay to ensure page is rendered
+    setTimeout(showDisclaimer, 300);
+  }
+})();
