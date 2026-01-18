@@ -2043,6 +2043,165 @@ body {
 }
 
 /* ==========================================================================
+   TRANSLATION HELP MODAL
+   ========================================================================== */
+
+.translation-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.translation-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.translation-modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  max-width: 420px;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-xl);
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.translation-modal-overlay.active .translation-modal {
+  transform: translateY(0) scale(1);
+}
+
+.translation-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--color-neutral-100);
+  border-radius: var(--radius-full);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.translation-modal-close:hover {
+  background: var(--color-neutral-200);
+  color: var(--color-text);
+}
+
+.translation-modal-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-accent) 100%);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.translation-modal-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 0.75rem;
+}
+
+.translation-modal-message {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+.translation-modal-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.translation-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.translation-link.discord {
+  background: #5865F2;
+  color: white;
+}
+
+.translation-link.discord:hover {
+  background: #4752C4;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+}
+
+.translation-link.linkedin {
+  background: #0A66C2;
+  color: white;
+}
+
+.translation-link.linkedin:hover {
+  background: #004182;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(10, 102, 194, 0.4);
+}
+
+/* Dark mode translation modal */
+[data-theme="dark"] .translation-modal {
+  background: #1a252f;
+  border: 1px solid rgba(144, 164, 174, 0.18);
+}
+
+[data-theme="dark"] .translation-modal-close {
+  background: rgba(144, 164, 174, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .translation-modal-close:hover {
+  background: rgba(144, 164, 174, 0.25);
+  color: white;
+}
+
+[data-theme="dark"] .translation-modal-title {
+  color: white;
+}
+
+[data-theme="dark"] .translation-modal-message {
+  color: rgba(226, 232, 240, 0.75);
+}
+
+/* ==========================================================================
    LEGAL DISCLAIMER MODAL
    ========================================================================== */
 
